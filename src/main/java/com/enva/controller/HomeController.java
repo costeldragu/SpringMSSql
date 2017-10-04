@@ -1,5 +1,6 @@
 package com.enva.controller;
 
+import com.enva.services.MySqlConnectionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,16 +17,23 @@ public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    MySqlConnectionService mySqlConnectionService;
 
     @RequestMapping("/")
     public String home() {
+
         try {
-            int rowCount = this.jdbcTemplate.queryForObject("SELECT COUNT(*) from people", Integer.class);
+            int rowCount = mySqlConnectionService.getJdbcTemplate().queryForObject("SELECT COUNT(*) from users", Integer.class);
         }catch (Exception e) {
             e.printStackTrace();
         }
        logger.info("Home page loaded");
-        return "Home Controller in place";
+        System.out.println(mySqlConnectionService);
+//        System.out.println(new MySqlConnectionService());
+//        System.out.println(mySqlConnectionService.getInstances());
+       return "Home Controller in place";
     }
 }
