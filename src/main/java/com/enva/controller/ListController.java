@@ -16,8 +16,13 @@ public class ListController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 
-    @Autowired
+
     MySqlConnectionService mySqlConnectionService;
+
+    @Autowired
+    public void setMySqlConnectionService(MySqlConnectionService mySqlConnectionService) {
+        this.mySqlConnectionService = mySqlConnectionService;
+    }
 
     @RequestMapping("/all")
     public String getAll() {

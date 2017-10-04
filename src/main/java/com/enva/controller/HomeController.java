@@ -19,12 +19,16 @@ import java.util.List;
 @RestController
 public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-    @Autowired
+    /**
+     * Autowired - should be used on a set method
+     */
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    MySqlConnectionService mySqlConnectionService;
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
 
     @RequestMapping("/")
     public List<HelpLinkModel> home() {
