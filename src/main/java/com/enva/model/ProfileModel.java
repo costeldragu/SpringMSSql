@@ -1,8 +1,8 @@
 package com.enva.model;
 
-public class Profile {
+public class ProfileModel {
     /**
      * The user associated to this profile
      */
-    private User user;
+    private UserModel user;
 }
